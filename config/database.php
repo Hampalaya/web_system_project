@@ -61,7 +61,7 @@ return [
             'options' => extension_loaded('pdo_mysql')
                 ? array_filter(env('APP_ENV') === 'local' || env('APP_ENV') === 'testing' ? [] : [
                     PDO::MYSQL_ATTR_SSL_CA => resource_path('certificates/DigiCertGlobalRootCA.crt.pem'),
-                    PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => true,
+                    PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
                 ])
                 : [],
         ],
