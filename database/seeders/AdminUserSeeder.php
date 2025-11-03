@@ -15,11 +15,11 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         $admin = User::create([
-            'fullname' => 'Admin User',
-            'email' => 'cuevas.school.project@gmail.com',
-            'password' => Hash::make('SchoolProject00!'),
+            'fullname' => 'Cuevas Owner', // Change this to your name
+            'email' => 'cuevas.school.project@gmail.com', // Change to your email
+            'password' => Hash::make('SchoolProject00!'), // Change to a secure password
             'status' => 'active',
-            'phone' => '09684976467'
+            'phone' => '09684976467' // Change to your phone
         ]);
 
         $admin->assignRole('admin');
