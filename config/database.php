@@ -58,12 +58,9 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-            'options' => extension_loaded('pdo_mysql')
-                ? array_filter(env('APP_ENV') === 'local' || env('APP_ENV') === 'testing' ? [] : [
-                    PDO::MYSQL_ATTR_SSL_CA => resource_path('certificates/DigiCertGlobalRootCA.crt.pem'),
-                    PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
-                ])
-                : [],
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => env('APP_ENV') === 'production' ? false : null,
+            ]) : [],
         ],
 
         'mariadb' => [
@@ -151,7 +148,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')).'-database-'),
+            'prefix' => env('REDIS_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')) . '-database-'),
             'persistent' => env('REDIS_PERSISTENT', false),
         ],
 
